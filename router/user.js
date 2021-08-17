@@ -8,10 +8,20 @@ router.get("/", async(req,res)=>{
         const users = await User.findAll()
         res.json(users)
     }catch(err){
-        console.error(err);
         res.json(err).status(500)
     }
 })
+
+router.get("/:uuid", async(req,res)=>{
+    const uuid = req.params.uuid
+    try{
+        const user = await User.findOne({where:{uuid}})
+        res.json(user)
+    }catch(err){
+        res.json(err).status(500)
+    }
+})
+
 
 router.post("/", async(req, res, next) =>{
     try{
