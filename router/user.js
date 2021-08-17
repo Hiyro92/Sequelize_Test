@@ -36,7 +36,7 @@ router.post("/", async(req, res, next) =>{
 router.delete("/:uuid", async(req, res, next) =>{
     const uuid = req.params.uuid
     try{
-        const user = await User.update({deletedAt: new Date()}, {where:{uuid}})
+        await User.update({deletedAt: new Date()}, {where:{uuid}})
         res.json({messenge: "User deleted"})
     }catch(err){
         next(err)
